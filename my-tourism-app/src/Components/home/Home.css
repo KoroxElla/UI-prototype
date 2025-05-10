@@ -1,0 +1,32 @@
+.bgContainer1,
+.bgContainer2,
+.bgContainer3,
+.bgContainer4 {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.bgContainer1 {
+  background-image: 
+    linear-gradient(to top, #001E23, rgba(255, 0, 0, 0)),
+    url("../Assets/gosforth.webp");
+}
+
+.bgContainer2 {
+  background-image: 
+    linear-gradient(to top, #001E23, rgba(255, 0, 0, 0)),
+    url("../Assets/graingertown.jpg");
+}
+
+.bgContainer3 {
+  background-image: 
+    linear-gradient(to top, #001E23, rgba(255, 0, 0, 0)),
+    url("../Assets/jesmond.jpg");
+}
+
+.bgContainer4 {
+  background-image: 
+    linear-gradient(to top, #001E23, rgba(255, 0, 0, 0)),
+    url("../Assets/quayside.jpg");
+}
