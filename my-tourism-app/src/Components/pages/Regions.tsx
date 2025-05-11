@@ -320,8 +320,8 @@ const Regions: React.FC = () => {
     setSelectedRegion(null);
   };
 
-  const nextImage = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const nextImage = (e?: KeyboardEvent | React.MouseEvent) => {
+    if (e) e.stopPropagation();
     if (selectedRegion?.images.items) {
       setCurrentImageIndex(
         (prev) => (prev + 1) % selectedRegion.images.items.length
@@ -331,8 +331,8 @@ const Regions: React.FC = () => {
     }
   };
 
-  const prevImage = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const prevImage = (e?: KeyboardEvent | React.MouseEvent) => {
+    if (e) e.stopPropagation();
     if (selectedRegion?.images.items) {
       setCurrentImageIndex(
         (prev) =>
@@ -349,9 +349,9 @@ const Regions: React.FC = () => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (selectedRegion) {
         if (e.key === "ArrowRight") {
-          nextImage(e as any);
+          nextImage(e as KeyboardEvent);
         } else if (e.key === "ArrowLeft") {
-          prevImage(e as any);
+          prevImage(e as KeyboardEvent);
         } else if (e.key === "Escape") {
           closeModal();
         }

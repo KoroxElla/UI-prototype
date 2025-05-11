@@ -43,7 +43,7 @@ const ViewPoint = () => {
     },
   ];
 
-  const handleSelected = (index) => {
+  const handleSelected = (index: number) => {
     setImgVisible(false);
     setState(index);
   };
@@ -61,7 +61,7 @@ const ViewPoint = () => {
     }
   };
 
-  const ImgSrc = handleImages(state);
+  const ImgSrc = handleImages();
 
   return (
     <div className="mt-[100px]" id="viewpoint">
