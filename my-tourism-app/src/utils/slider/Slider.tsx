@@ -1,9 +1,10 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
+import "swiper/swiper.min.css";
+import "swiper/modules/pagination/pagination.min.css";
 import "./Slider.css";
 import { useContext, useEffect, useRef } from "react";
 import { MyContext } from "../../context/AppContext";
+import { Swiper as SwiperType } from "swiper/types";
 
 import img1 from "../../Components/Assets/gosforthspa.webp";
 import img2 from "../../Components/Assets/threatreroyal.jpg";
@@ -11,11 +12,17 @@ import img3 from "../../Components/Assets/jesmonddene.webp";
 import img4 from "../../Components/Assets/Baltic.jpg";
 import { Pagination } from "swiper/modules";
 
-const Slider = () => {
-  const swiperRef = useRef(null);
-  const { activeSlideIndex, setActiveSlideIndex } = useContext(MyContext);
+interface ContextType {
+  activeSlideIndex: number;
+  setActiveSlideIndex: (index: number) => void;
+}
 
-  const handleSlideChange = (swiper) => {
+const Slider = () => {
+  const swiperRef = useRef<{ swiper: SwiperType }>(null);
+  const context = useContext(MyContext) as ContextType;
+  const { activeSlideIndex, setActiveSlideIndex } = context;
+
+  const handleSlideChange = (swiper: SwiperType) => {
     const currentIndex = swiper.activeIndex;
     setActiveSlideIndex(currentIndex);
   };
@@ -24,6 +31,10 @@ const Slider = () => {
     if (swiperRef.current) {
       const swiper = swiperRef.current.swiper;
       swiper.on("slideChange", () => handleSlideChange(swiper));
+
+      return () => {
+        swiper.off("slideChange");
+      };
     }
   });
 
@@ -58,7 +69,8 @@ const Slider = () => {
         modules={[Pagination]}
         ref={swiperRef}
         initialSlide={activeSlideIndex}
-        className="pl-[90px] pt-6 "
+        className="pl-[90px] pt-6"
+        onSlideChange={handleSlideChange}
       >
         {places.map((item, i) => (
           <SwiperSlide key={i}>

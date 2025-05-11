@@ -5,9 +5,9 @@ import { useContext } from "react";
 import { MyContext } from "../../context/AppContext";
 
 const Home = () => {
-  const { activeSlideIndex } = useContext(MyContext);
+  const activeSlideIndex = useContext(MyContext) as number;
 
-  const handeClass = (activeSlideIndex) => {
+  const handeClass = (activeSlideIndex: number) => {
     switch (activeSlideIndex) {
       case 0:
         return "bgContainer1";
