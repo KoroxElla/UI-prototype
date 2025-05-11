@@ -35,7 +35,8 @@ import AOS from "aos";
 import BookTour from "../../utils/slider/BookTour";
 
 const MostAttractive = () => {
-  const activeSlideIndex = useContext(MyContext) as number;
+  const context = useContext(MyContext);
+  const { activeSlideIndex } = context;
 
   useEffect(() => {
     AOS.init();

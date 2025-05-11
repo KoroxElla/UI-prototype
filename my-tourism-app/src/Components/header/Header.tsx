@@ -34,7 +34,8 @@ const contentData = [
 ];
 
 const Header = () => {
-  const activeSlideIndex = useContext(MyContext) as number;
+  const context = useContext(MyContext);
+  const { activeSlideIndex } = context;
 
   const handleClass = (activeSlideIndex: number) => {
     const { region, title, description } = contentData[activeSlideIndex] || {};

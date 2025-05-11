@@ -1,11 +1,26 @@
-import { createContext, useState } from "react";
+import { createContext, useState, ReactNode } from "react";
 
-export const MyContext = createContext();
+// Define the type for your context value
+interface ContextValue {
+  activeSlideIndex: number;
+  setActiveSlideIndex: (index: number) => void;
+}
 
-const AppContext = ({ children }) => {
+// Create context with proper typing
+export const MyContext = createContext<ContextValue>({
+  activeSlideIndex: 0,
+  setActiveSlideIndex: () => {},
+});
+
+// Define props type for the provider component
+interface AppContextProps {
+  children: ReactNode;
+}
+
+const AppContext = ({ children }: AppContextProps) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
-  const infos = { activeSlideIndex, setActiveSlideIndex };
+  const infos: ContextValue = { activeSlideIndex, setActiveSlideIndex };
 
   return (
     <div>
